@@ -5,7 +5,18 @@ class AgentesController < ApplicationController
   def index
   	@agentes = Agente.all
     @title = "Lista de Agentes"
+
+    respond_html_and_csv
   end
+
+  def respond_html_and_csv
+  respond_to do |format|
+    format.html
+    format.xlsx do
+      response.headers['Content-Disposition'] = 'attachment; filename="agentes.xlsx"'
+    end
+  end
+end
 
   def new
   	@agente = Agente.new
@@ -24,6 +35,8 @@ class AgentesController < ApplicationController
   	@agente = Agente.new(agente_params)
 
   	if @agente.save
+      NotificacionMailer.nuevo(@agente).deliver
+
   		redirect_to agente_path(@agente)
       flash.notice = 'Agente creado'
   	else
@@ -33,6 +46,7 @@ class AgentesController < ApplicationController
 
   def update
   	if @agente.update(agente_params)
+      NotificacionMailer.actualizacion(@agente).deliver
   		redirect_to agente_path(@agente)
       flash.notice = 'Agente actualizado'
   	else
@@ -41,6 +55,7 @@ class AgentesController < ApplicationController
   end
 
   def destroy
+    NotificacionMailer.borrado(@agente).deliver
     @agente.destroy
     redirect_to agentes_path
     flash.notice = 'Agente eliminado'

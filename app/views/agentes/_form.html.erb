@@ -1,12 +1,15 @@
-<div class="formulario">
-  <%= simple_form_for @agente do |f| %>
-    <%= f.input :primerNombre, input_html: { autocomplete: "off", autofocus: "on", :class => "inputPrimerNombre", :style => 'width: 225px'} %>
-    <div class="segundoNombre"><%= f.input :segundoNombre, input_html: { autocomplete: "off", :class => "inputSegundoNombre", :style => 'width: 225px'} %></div>
-   	<div class="primerApellido"><%= f.input :primerApellido, input_html: { autocomplete: "off", :class => "inputPrimerApellido", :style => 'width: 225px' } %></div>
-    <div class="nombreUDS"><%= f.input :nombreUds, input_html: { autocomplete: "off", :class => "inputNombreUDS", :style => 'width: 225px' } %></div>
-    <div class="modalidad"><label class="Mod" for="modalidad">Modalidad</label><div class="selectModalidad"><%=f.select :modalidad,([['Tradicional'], ['Institucional'], ['Familiar'], ['Propia']])%></div></div>
-   	<div class="correo"><%= f.input :correo, input_html: { autocomplete: "off", :class => "inputCorreo", :style => 'width: 225px' } %></div>
-   	<div class="cedula"><%= f.input :cedula, input_html: { autocomplete: "off", :class => "inputCedula", :style => 'width: 225px'} %></div>
-    <%= f.button :submit, :class => 'btnAgente'%>
-  <% end %>
-</div>
+<%= simple_form_for @agente, wrapper: :floating_labels_form do |f| %>
+  <%= f.input :primerNombre %>
+  <%= f.input :segundoNombre %>
+  <%= f.input :primerApellido %>
+  <%= f.input :nombreUds %>
+  <%= f.input :modalidad %>
+  <%= f.input :correo %>
+  <%= f.input :cedula %>
+  <div class="botones">
+  	<%= f.button :submit, class: "btn btn-info" %>
+  	<div class="btn btn-secondary">
+  		<i class="fas fa-undo-alt"></i> <%= link_to 'Regresar', agentes_path %>
+  	</div>
+  </div>
+<% end %>

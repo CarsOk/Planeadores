@@ -1,5 +1,17 @@
-<table border="1" id="transacciones" class="table">
-	<thead class="thead-dark">
+<h2>Transacciones</h2>
+
+<div class="botones">
+	<div class="btn btn-info">
+		<i class="fas fa-plus"></i> <%= link_to 'Transaccion', new_agente_transaccion_path(@agente) %>
+	</div>
+
+	<div class="btn btn-secondary">
+		<i class="fas fa-user-tie"></i> <%= link_to 'Ver agente', agente_path(@agente) %>
+	</div>
+</div>
+
+<table id="transacciones" class="table">
+	<thead>
 		<tr>
 			<th>Valor</th>
 			<th>Medio de Pago</th>
@@ -12,12 +24,3 @@
 		<%= render @transacciones %>
 	</tbody>
 </table>
-
-<div class="dropdown">
-  <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Acciones</a>
-
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-		<%= link_to 'Nueva Transaccion', new_agente_transaccion_path(@agente), class: "dropdown-item" %>
-		<%= link_to 'Ver Agente', agente_path(@agente), class: "dropdown-item" %>
-  </div>
-</div>

@@ -1,5 +1,17 @@
-<table border="1" id="agentes" class="table">
-	<thead class="thead-dark">
+<h2>Lista de Agentes</h2>
+
+<div class="botones">
+	<div class="btn btn-info">
+		<i class="fas fa-user-plus"></i> <%= link_to 'Nuevo Agente', new_agente_path %>
+	</div>
+	
+	<div class="btn btn-success" id="Excel">
+		<i class="fas fa-file-excel"></i> <%= link_to 'Excel', agentes_path(format: "xlsx"), :class => "excel" %>
+	</div>
+</div>
+
+<table id="agentes" class="table">
+	<thead>
 		<th>Primer Nombre</th>
 		<th>Primer Apellido</th>
 		<th>Nombre UDS</th>
@@ -11,11 +23,3 @@
 		<%= render @agentes %>
 	</tbody>
 </table>
-
-<div class="dropdown">
-  <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Acciones</a>
-
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <%= link_to 'Nuevo Agente', new_agente_path, class: "dropdown-item" %>
-  </div>
-</div>

@@ -1,0 +1,34 @@
+<h1>Dashboard</h1>
+
+<div class="cuadros">
+	<div id="agentes">
+		<%= link_to 'AGENTES', agentes_path %><i class="fas fa-user-tie"></i> 
+	</div>
+
+	<% if current_usuario.has_role? :admin %>
+		<div id="usuarios">
+			<%= link_to 'USUARIOS', usuarios_path %> <i class="fas fa-users"></i>
+		</div>
+	<% end %>
+
+	<div id="transacciones">
+		<%= link_to 'TRANSACCIONES', transacciones_path %> <i class="fas fa-dollar-sign"></i>
+	</div>
+
+	<div id="planeaciones">
+		<%= link_to 'PLANEACIONES', planeaciones_path %> <i class="fas fa-book"></i>
+	</div>
+</div>
+
+<div class="graficas">
+	<h2>Estadistica de Transacciones</h2>
+
+	<div class="grafica1">
+		<h2>Grafica por mes</h2>
+		<%= line_chart(@data) %>
+	</div>
+	<div class="grafica2">
+		<h2>Grafica por año</h2>
+		<%= pie_chart(@años) %>	
+	</div>
+</div>

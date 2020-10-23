@@ -1,9 +1,11 @@
-<div class="formulario">
-  <%= simple_form_for [@agente, @planeacion] do |f| %>
-    <label class="Format" for="formato">Formato</label><div class="selectFormato"><%= f.select :formato, ([['Formato 1'], ['Formato 2']]) %></div>
-    <div class="tematica"><%= f.input :tematica, input_html: { autocomplete: "off", :class => "inputTematica", :style => 'width: 255px' } %></div>
-    <div class="fecha"><%= f.input :fecha_de_creacion, input_html: { :class => "inputFecha" } %></div>
-    <%= f.button :submit, :class => 'btnPlaneaciones' %>
-  <% end %>
-
-</div>
+<%= simple_form_for [@agente, @planeacion], wrapper: :vertical_form do |f| %>
+	<%= f.input :formato, priority: [ "Formato 1" ], collection: ["Formato 1", "Formato 2"], include_blank: false, include_hidden: false %>
+	<%= f.input :tematica, input_html: { autocomplete: "off" } %>
+	<%= f.input :fecha_de_creacion %>
+	<div class="botones">
+		<%= f.button :submit, class: "btn btn-info" %>	
+		<div class="btn btn-secondary">
+			<i class="fas fa-undo-alt"></i> <%= link_to 'Regresar', agente_planeaciones_path(@agente) %>
+		</div>
+	</div>
+<% end %>

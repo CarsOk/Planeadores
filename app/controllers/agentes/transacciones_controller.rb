@@ -1,5 +1,6 @@
 class Agentes::TransaccionesController < ApplicationController
-	before_action :find_agente
+	before_action :authenticate_usuario!
+  before_action :find_agente
 	before_action :find_transaccion, only: [:show, :edit, :update, :destroy]
 
   def index
